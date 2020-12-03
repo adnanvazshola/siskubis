@@ -34,7 +34,7 @@
 
     .size {
         margin-right: 10px; }
-  
+
     .size:first-of-type {
         margin-left: 40px; }
 
@@ -66,7 +66,7 @@
     .not-available {
         text-align: center;
         line-height: 2em; }
-    
+
     .not-available:before {
         font-family: fontawesome;
         content: "\f00d";
@@ -96,7 +96,7 @@
     #carousel-thumb .carousel-inner img{
         height:500px;
     }
-    
+
     #carousel-thumb .carousel-indicators li {
         background-color: transparent;
         -webkit-border-radius: 0;
@@ -158,7 +158,7 @@
       							<!--/.Controls-->
       								<ol class="carousel-indicators">
       									@foreach ($image as $row)
-        								<li data-target="#carousel-thumb" data-slide-to="{{ $row['id'] }}" class="active"> 
+        								<li data-target="#carousel-thumb" data-slide-to="{{ $row['id'] }}" class="active">
         									<img class="d-block w-100" style="height: 40px; width: 150px" src="{{ asset('img/produk/' . $row->image) }}" class="img-fluid">
         								</li>
         								@endforeach
@@ -185,7 +185,7 @@
 								<p class="product-description">{{ $produk->tentang }}</p>
 								<h4 class="price">current price: <span>Rp  {{ number_format($produk->harga_jual,0,',','.') }}</span></h4>
 								<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
-							</div>						
+							</div>
 						</div>
 					</div>
 				</div>
@@ -235,7 +235,7 @@
 							<h5 class="heading">High Secure Payment</h5>
 							<p class="text-muted text-12">Jangan khawatir soal pembayaran, kami akan menjamin pembayaran anda.</p>
 						</div>
-					</div>	
+					</div>
 				</div>
 			</div>
 		</div>
@@ -250,19 +250,19 @@
 								<a class="nav-item nav-link active show" id="nav-produk-tab" data-toggle="tab" href="#nav-produk" role="tab" aria-controls="nav-produk" aria-selected="true">Detail Produk</a>
 
 								<a class="nav-item nav-link" id="nav-bisnis-tab" data-toggle="tab" href="#nav-bisnis" role="tab" aria-controls="nav-bisnis" aria-selected="false">Bisnis</a>
-								
+
 								<a class="nav-item nav-link" id="nav-canvas-tab" data-toggle="tab" href="#nav-canvas" role="tab" aria-controls="nav-canvas" aria-selected="false">Canvas</a>
-								
+
 								<a class="nav-item nav-link" id="nav-ijin-tab" data-toggle="tab" href="#nav-ijin" role="tab" aria-controls="nav-ijin" aria-selected="false">Ijin</a>
-								
+
 								<a class="nav-item nav-link" id="nav-image-tab" data-toggle="tab" href="#nav-image" role="tab" aria-controls="nav-image" aria-selected="false">Image</a>
-								
+
 								<a class="nav-item nav-link" id="nav-ki-tab" data-toggle="tab" href="#nav-ki" role="tab" aria-controls="nav-ki" aria-selected="false">Kekayaan Intelektual</a>
-								
+
 								<a class="nav-item nav-link" id="nav-riset-tab" data-toggle="tab" href="#nav-riset" role="tab" aria-controls="nav-riset" aria-selected="false">Riset</a>
-								
+
 								<a class="nav-item nav-link" id="nav-sertifikasi-tab" data-toggle="tab" href="#nav-sertifikasi" role="tab" aria-controls="nav-sertifikasi" aria-selected="false">Sertifikat</a>
-								
+
 								<a class="nav-item nav-link" id="nav-team-tab" data-toggle="tab" href="#nav-team" role="tab" aria-controls="nav-team" aria-selected="false">Team</a>
 
 							</div>
@@ -305,17 +305,21 @@
 										  	<dd class="col-sm-8">
 										  		@if($produk->kategori_id == 0)
 										  			Belum ada data
-										  		@else
-										  			{{ $produk->kategori_id }}
+										  		@elseif($produk->kategori_id == 1)
+										  			Otomotif
+										  		@elseif($produk->kategori_id == 2)
+										  			Kuliner
+										  		@elseif($produk->kategori_id == 3)
+										  			Teknologi
 										  		@endif
 										  	</dd> <!-- Belum di deklarasikan -->
 
 										  	<dt class="col-sm-3">Tags</dt><dt class="col-md-1"> : </dt>
 										  	<dd class="col-sm-8">
 										  		<h5>
-										  			@foreach($tag as $row)
-										  				<span class="badge badge-light">#{{$row}}</span>
-										  			@endforeach
+										  		@foreach($tag as $row)
+										  			<span class="badge badge-light">#{{$row}}</span>
+										  		@endforeach
 										  		</h5>
 										  	</dd>
 
@@ -393,7 +397,11 @@
 								  	<dd class="col-sm-8">{{ $produk->produk_bisnis->dampak_sosek ?? 'tidak ada data'}}</dd>
 
 								  	<dt class="col-sm-3">Produksi Harga</dt><dt class="col-md-1"> : </dt>
-								  	<dd class="col-sm-8">{{ $produk->produk_bisnis->produksi_harga ?? 'tidak ada data'}}</dd>
+								  	<dd class="col-sm-8">
+								  		@foreach($produksi_harga as $row)
+                                    		<i class="fas fa-arrow-right"></i>  {{ $row }}<br />
+										 @endforeach
+								  	</dd>
 
 								  	<dt class="col-sm-3">Pemasaran</dt><dt class="col-md-1"> : </dt>
 								  	<dd class="col-sm-8">{{ $produk->produk_bisnis->pemasaran ?? 'tidak ada data'}}</dd>
@@ -406,7 +414,17 @@
 								  	<div class="w-100">{!! $produk->produk_canvas->canvas ?? 'tidak ada data'!!}</div>
 
 								  	<dt class="col-sm-3">Target Pasar</dt>
-								  	<dd class="col-sm-8">{{ $produk->produk_canvas->kategori ?? 'tidak ada data'}}</dd>
+								  	<dd class="col-sm-8">
+								  		@if($produk->kategori_id == 0)
+								  			Belum ada data
+								  		@elseif($produk->kategori_id == 1)
+								  			Produk
+								  		@elseif($produk->kategori_id == 2)
+								  			Pemasaran
+								  		@elseif($produk->kategori_id == 3)
+								  			Target
+										@endif
+								  	</dd>
 								</dl>
 							</div>
 
@@ -458,11 +476,17 @@
 								<dl class="row">
 									<dt class="col-sm-3">Jenis</dt><dt class="col-md-1"> : </dt>
 								  	<dd class="col-sm-8">
-								  		@if($produk->produk_ki->jenis_ki == 1) Hak Cipta
-								  		@elseif($produk->produk_ki->jenis_ki == 2) Paten
-								  		@elseif($produk->produk_ki->jenis_ki == 3) Merk Dagang
-								  		@elseif($produk->produk_ki->jenis_ki == 4) Rahasia Dagang
-								  		@endif
+								  		@if($produk->produk_ki->jenis_ki == 0)
+								  			Belum ada data
+								  		@elseif($produk->produk_ki->jenis_ki == 1)
+								  			Hak Cipta
+								  		@elseif($produk->produk_ki->jenis_ki == 2)
+								  			Paten
+								  		@elseif($produk->produk_ki->jenis_ki == 3)
+								  			Merk Dagang
+								  		@elseif($produk->produk_ki->jenis_ki == 4)
+								  			Rahasia Dagang
+										@endif
 								  	</dd>
 
 									<dt class="col-sm-3">Status</dt><dt class="col-md-1"> : </dt>
@@ -559,9 +583,13 @@
 													<div class="ul-product-detail__border-box">
 														<h5 class="heading">{{ $row->profil_user->nama ?? 'tidak ada data'}}</h5>
 														<h6 class="">
-															{{ $row->jabatan ?? 'tidak ada data'}} - <b class="font-weight-bold">{{ $row->divisi }}</b>
+															<b class="font-weight-bold">Jabatan</b><br>
+															<p class="mb-1">{{ $row->jabatan ?? 'tidak ada data' }}</p><br>
+															<b class="font-weight-bold">Divisi</b><br>
+															<p class="mb-1">{{ $row->divisi ?? 'tidak ada data' }}</p><br>
+															<b class="font-weight-bold">Tugas</b><br>
+															<p class="mb-1">{{ $row->tugas ?? 'tidak ada data' }}</p>
 														</h6>
-														<p>{{ $row->tugas }}</p>
 													</div>
 												</div>
 											</div>
@@ -576,4 +604,60 @@
 			</div>
 		</div>
 	</section>
+@endsection
+@section('js')
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "2000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    @if(Session::has('message'))
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+        case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+
+        case 'error':
+            toastr.error("{{ Session::get('message') }}");
+            break;
+    }
+  @endif
+
+    $('.delete').on('click', function (event) {
+        event.preventDefault();
+        const url = $(this).attr('href');
+        swal({
+            title: 'Apa Anda Yakin Menghapus ?',
+            type: 'warning',
+            showCancelButton:true,
+            confirmButtonColor: '#0CC27E',
+            cancelButtonColor: '#FF586B',
+            confirmButtonText: 'Hapus',
+            cancelButtontext: 'Batal',
+            confirmButtonClass: 'btn btn-success mr-5',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+        }).then(function(value){
+            if (value){
+                window.location.href = url;
+            }
+        });
+    });
+</script>
+
 @endsection
