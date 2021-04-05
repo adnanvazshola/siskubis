@@ -99,7 +99,7 @@ class ProdukController extends Controller
         $spesifikasi    = explode(';',$produk->spesifikasi);
         $manfaat        = explode(';',$produk->manfaat);
         $keunggulan     = explode(';',$produk->keunggulan);
-        $produksi_harga = explode(';',$produk->produk_bisnis->produksi_harga);
+        $produksi_harga = explode(';',$produk->produk_bisnis->produksi_harga); 
 
         return view('produk.detailProduk', compact('produk','produk_team','image','tag','spesifikasi','manfaat','keunggulan','produksi_harga'));
     }

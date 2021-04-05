@@ -303,14 +303,14 @@
 
 										  	<dt class="col-sm-3">Kategori Produk</dt><dt class="col-md-1"> : </dt>
 										  	<dd class="col-sm-8">
-										  		@if($produk->kategori_id == 0)
-										  			Belum ada data
-										  		@elseif($produk->kategori_id == 1)
+										  		@if($produk->kategori_id == 1)
 										  			Otomotif
 										  		@elseif($produk->kategori_id == 2)
 										  			Kuliner
 										  		@elseif($produk->kategori_id == 3)
 										  			Teknologi
+										  		@else
+										  			Belum ada data
 										  		@endif
 										  	</dd> <!-- Belum di deklarasikan -->
 
@@ -318,7 +318,7 @@
 										  	<dd class="col-sm-8">
 										  		<h5>
 										  		@foreach($tag as $row)
-										  			<span class="badge badge-light">#{{$row}}</span>
+										  			<span class="badge badge-primary">#{{$row}}</span>
 										  		@endforeach
 										  		</h5>
 										  	</dd>
@@ -398,9 +398,11 @@
 
 								  	<dt class="col-sm-3">Produksi Harga</dt><dt class="col-md-1"> : </dt>
 								  	<dd class="col-sm-8">
-								  		@foreach($produksi_harga as $row)
+								  		@forelse($produksi_harga as $row)
                                     		<i class="fas fa-arrow-right"></i>  {{ $row }}<br />
-										 @endforeach
+										@empty
+											tidak ada data
+										@endforelse
 								  	</dd>
 
 								  	<dt class="col-sm-3">Pemasaran</dt><dt class="col-md-1"> : </dt>
@@ -415,14 +417,14 @@
 
 								  	<dt class="col-sm-3">Target Pasar</dt>
 								  	<dd class="col-sm-8">
-								  		@if($produk->kategori_id == 0)
-								  			Belum ada data
-								  		@elseif($produk->kategori_id == 1)
+								  		@if($produk->kategori_id == 1)
 								  			Produk
 								  		@elseif($produk->kategori_id == 2)
 								  			Pemasaran
 								  		@elseif($produk->kategori_id == 3)
 								  			Target
+										@else
+										  	Belum ada data
 										@endif
 								  	</dd>
 								</dl>
@@ -451,7 +453,7 @@
 
 								  	<dt class="col-sm-3">Dokumen</dt><dt class="col-md-1"> : </dt>
 								  	<dd class="col-sm-8">
-								  		<a href="{{ url('file/produk/ijin'.'/'.$produk->produk_ijin->dokumen ) }}">
+								  		<a href="{{ url('file/produk/ijin'.'/'.$produk->produk_ijin->dokumen )}}">
 								  			{{ $produk->produk_ijin->dokumen ?? 'tidak ada data' }}
 								  		</a>
 								  	</dd>
@@ -476,9 +478,7 @@
 								<dl class="row">
 									<dt class="col-sm-3">Jenis</dt><dt class="col-md-1"> : </dt>
 								  	<dd class="col-sm-8">
-								  		@if($produk->produk_ki->jenis_ki == 0)
-								  			Belum ada data
-								  		@elseif($produk->produk_ki->jenis_ki == 1)
+								  		@if($produk->produk_ki->jenis_ki == 1)
 								  			Hak Cipta
 								  		@elseif($produk->produk_ki->jenis_ki == 2)
 								  			Paten
@@ -486,6 +486,8 @@
 								  			Merk Dagang
 								  		@elseif($produk->produk_ki->jenis_ki == 4)
 								  			Rahasia Dagang
+										@else
+								  			Belum ada data
 										@endif
 								  	</dd>
 
