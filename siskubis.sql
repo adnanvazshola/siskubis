@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 19, 2020 at 11:33 AM
--- Server version: 10.3.24-MariaDB-cll-lve
--- PHP Version: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Apr 05, 2021 at 02:27 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,8 +18,46 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `siskubis_demo`
+-- Database: `siskubis`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `arus_kas`
+--
+
+CREATE TABLE `arus_kas` (
+  `id` int(11) NOT NULL,
+  `tenant_id` int(11) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `jenis` int(11) NOT NULL,
+  `jumlah` varchar(255) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `arus_kas`
+--
+
+INSERT INTO `arus_kas` (`id`, `tenant_id`, `keterangan`, `jenis`, `jumlah`, `tanggal`, `foto`, `updated_at`) VALUES
+(1, 1, 'Modal test', 1, '30000000', '2020-11-12 04:32:21', '', '2020-11-12 04:32:21'),
+(2, 1, 'Pembelian persediaan bahan', 0, '20000000', '2020-11-02 17:05:04', '', '2020-10-23 16:01:07'),
+(3, 1, 'Pembelian peralatan', 0, '1000000', '2020-11-02 14:29:22', '', '2020-10-23 16:01:20'),
+(4, 1, 'Beban operasi', 0, '3000000', '2020-11-02 13:41:54', '', '2020-10-23 15:45:31'),
+(5, 1, 'Penjualan barang', 1, '50000000', '2020-11-03 11:06:05', '', '2020-10-23 16:01:11'),
+(6, 1, 'Piutang penjualan barang', 1, '4500000', '2020-11-02 13:31:16', '', '2020-10-23 16:34:58'),
+(7, 1, 'Pendapatan bunga', 1, '500000', '2020-11-02 13:54:07', '', '2020-10-26 13:54:43'),
+(8, 1, 'Penjualan mesin tidak digunakan', 1, '10000000', '2020-11-03 13:54:51', '', '2020-10-26 13:56:06'),
+(9, 1, 'penjualan saham', 1, '5000000', '2020-11-06 13:44:02', '1603630571coba.jpg', '2020-10-25 12:56:11'),
+(10, 1, 'pajak penghasilan', 0, '1500000', '2020-11-30 12:59:26', '1603630766kas.jpg', '2020-10-25 12:59:26'),
+(11, 1, 'pembayaran deviden', 0, '500000', '2020-11-02 13:54:51', '', '2020-10-26 13:56:06'),
+(12, 1, 'pembayaran hutang bank', 0, '10000000', '2020-11-09 04:25:01', '1604895901dana-segar.jpg', '2020-11-09 04:25:01'),
+(14, 1, 'pembayaran beban bunga', 0, '1000000', '2020-11-09 04:22:11', '1604895731coba.jpg', '2020-11-09 04:22:11'),
+(15, 1, 'bayar hutang bank', 0, '10000000', '2020-11-30 13:54:10', '', '2020-11-10 13:54:54'),
+(16, 1, 'coba', 1, '2000000', '2020-11-12 09:55:38', '1605174938coba.jpg', '2020-11-12 09:55:38');
 
 -- --------------------------------------------------------
 
@@ -48,11 +85,8 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id`, `slug`, `tittle`, `berita_category_id`, `foto`, `berita`, `views`, `publish`, `author_id`, `inkubator_id`, `updated_at`, `created_at`) VALUES
-(40, 'inkubator-bisnis-uny-raih-penghargaan-inkubator-berprestasi-nasional', 'Inkubator Bisnis Uny Raih Penghargaan Inkubator Berprestasi Nasional', 88, '1602524966inkubator-bisnis-uny-raih-penghargaan-inkubator-berprestasi-nasional.jpg', '<p>Inkubator Bisnis UNY berfungsi sebagai lembaga pendampingan bagi UKM tenant di Indonesia. Dibentuk melalui kerjasama antara Kementerian Koperasi dan UKM pada tahun 2012, inkubator bisnis UNY bernaung di Pusat Penelitian Wanita dan Gender LPPM.&nbsp; Selain aktif dalam kegiatan pendampingan PPBT (Pengusaha Pemula Berbasis Teknologi), CPPBT ( Calon Pengusaha Pemula Berbasis Teknologi), WMP (Wirausaha Muda Pemula) dan kegiatan-kegiatan lain dari kementerian terkait, saat ini inkubator bisnis UNY juga aktif sebagai anggota resmi dari Asosiasi Inkubator Bisnis Indonesia (AIBI),&nbsp;<em>ASEAN Business Incubator Network</em>&nbsp;(ABINet) dan&nbsp;<em>Asian Association of Business Incubation</em>&nbsp;(AABI) dan telah menjalin beberapa kerjasama, diantaranya kerjasama internasional dengan&nbsp;<em>Chaoyang University of Technology</em>, Taiwan. Baru&ndash;baru ini inkubator bisnis UNY mendapat penghargaan sebagai inkubator berprestasi yang diserahkan di Jakarta oleh Menristekdikti Prof. Mohammad Nasir Desember 2018 lalu.</p>\r\n\r\n<p>Menurut pimpinan inkubator bisnis UNY, Prof. Nahiyah Jaidi Faraz ada 22 produk yang sekarang bergabung dalam inkubator bisnis, selain dari UNY juga ada dari perguruan tinggi lain. Dikatakannya bahwa model inkubasi di UNY dibagi menjadi tiga bagian yaitu pra inkubasi, inkubasi dan pasca inkubasi. &ldquo;Awalnya kami terapkan seleksi melalui proses wawancara dan seleksi administrasi&rdquo; kata Nahiyah. Sedangkan tahap inkubasi dibagi menjadi tiga periode yaitu awal, pengembangan dan lanjutan. Dalam tahap inkubasi ini para inkubator didampingi selama tiga tahun dan selama itu diberi berbagai pelatihan seperti&nbsp;<em>business plan</em>, teknik manajemen, produksi komersial,&nbsp;<em>networking</em>&nbsp;bahkan hingga ke pengurusan HAKI dan sertifikasi produk. Bila sudah dianggap mampu maka akan dilepas sebagai UMKM yang inovatif, mandiri dan berdaya saing. Pada tahap ini inkubator bisnis&nbsp; lebih sebagai media pelatihan&nbsp;<em>softskill&nbsp;</em>dan<em>&nbsp;networking.</em></p>\r\n\r\n<p>Kepala LPPM UNY Dr. Suyanta menjelaskan bahwa keberadaan inkubator bisnis UNY sebagai salah satu upaya menuju hilirisasi temuan Iptek. &ldquo;Karya dosen dan mahasiswa tidak boleh berhenti dalam wujud laporan, tetapi harus bermuara pada hasil nyata berupa teknologi tepatguna yang bermanfaat langsung bagi masyarakat luar&rdquo; kata Suyanta. Sementara itu Prof. Sutrisna Wibawa, Rektor UNY, menegaskan bahwa secara kelembagaan UNY akan terus meningkatkan kerjasama dengan lembaga/institusi lain. &ldquo;Kerjasama dijalin utamanya dengan dunia usaha dan dunia industri untuk menyiapkan lulusan yang unggul dan siap berkompetisi di era revolusi industri 4.0&rdquo; tutup Sutrisna Wibawa.</p>\r\n\r\n<p>Beberapa produk inkubator bisnis UNY yang sudah dikenal diantaranya speedometer&nbsp;<em>custom</em>&nbsp;untuk motor dan mobil, produsen&nbsp;<em>robotic kits</em>&nbsp;Indobot, RLS&nbsp;<em>Liquid Spray&nbsp;</em>berbahan binahong, pepaya dan lidah buaya untuk mengatasi nyeri serta mesin penyebar pakan ikan dan udang otomatis Astrover. (Dedy)</p>', 1, '1', 1, 0, '2020-10-13 04:31:54', '2020-10-12 17:49:26'),
-(41, 'bintek-ke-5-peningkatan-kapasitas-ukm-tenant-inkubator-bisnis-lppm-uny', 'Bintek Ke 5 Peningkatan Kapasitas Ukm Tenant Inkubator Bisnis Lppm Uny', 13, '1602525343bintek-ke-5-peningkatan-kapasitas-ukm-tenant-inkubator-bisnis-lppm-uny.jpg', '<p>Di Indonesia, Usaha Kecil Menengah (UKM) adalah tulang punggung ekonomi Indonesia. Jumlah UKM hingga 2013 mencapai sekitar &nbsp;52 juta. UKM di Indonesia sangat penting bagi ekonomi karena menyumbang 60% dari PDB dan menampung 97% tenaga kerja. Oleh karena itu Pemerintah melalui Kementerian Koperasi dan UKM mengembangkan program peningkatan kualitas kemasan dan produk pelaku koperasi dan usaha kecil dan menengah ke berbagai daerah sebagai upaya memperkuat daya saing sektor riil di pasar nasional dan global.</p>\r\n\r\n<p>Sejalan dengan hal tersebut di atas Kementerian Koperasi dan UKM bekerjasama dengan Lembaga Penelitian dan Pengabdian kepada Masyarakat Universitas Negeri Yogyakarta (LPPM UNY) melalui Pusat Studi Wanita dan Gender&nbsp; mengadakan kegiatan Bimbingan Teknis Tahap 5 Peningkatan Kapasitas UKM Tenant Inkubator Bisnis pada tanggal 25-27 September 2013 di Hotel UNY. Sebanyak 45 peserta UKM bimbingan Inkubator Bisnis LPPM UNY mengikuti tahapan bimbingan teknis hingga tahap 5 (tahap akhir).</p>\r\n\r\n<p>Bintek tahap 5 ini dirancang agar para peserta bisa membangun&nbsp;<em>bisnis plan</em>&nbsp;yang sudah diberi masukan oleh pendamping sehingga dapat menjadi acuan atau paling tidak menjadi&nbsp;<em>route map</em>&nbsp;bisnis yang dijalankan.</p>\r\n\r\n<p>Ketua Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM) UNY, Prof.Dr. Anik Ghufron dalam sambutanya menyampaikan, &ldquo;LPPM melalui Pusat Penelitian Wanita dan Gender (PSW/G) sangat mendukung kegiatan Inkubator Bisnis ini yang sudah lama dirintis oleh Dr. Nahiyah J. Faraz, M.Pd. dan M. Lies Endarwati, M.Pd dalam kaitannya bisa memberdayakan dan mengembangkan UKM-UKM di sekitar DIY&rdquo;, jelasnya.</p>\r\n\r\n<p>Anik Ghufron menambahkan, &ldquo;salah satu wadah yang tepat sebagai naungan UKM adalah Koperasi, dengan pembentukan Koperasi ini nantinya diharapkan UKM-UKM yang bernaung dibawahnya dapat berkembang sejalan dengan prinsip ekonomi kerakyatan. Saya berkeinginan Inkubator Bisnis ini nantinya bisa berdiri sendiri dan tidak lagi bernaung dibawah PSW/G dengan harapan bisa meramaikan&nbsp;<em>Business Center</em>. Kedepannya saya berkeinginan membangun gedung sendiri guna memberikan pelatihan dan bimbingan kepada Mahasiswa, Dosen, UKM maupun Mitra LPPM untuk memperluas dan memperkenalkan produk atau hasil karya yang diminati masyarakat&rdquo;, tegasnya.</p>\r\n\r\n<p>Turut hadir sebagai narasumber Noor Liesnani Pamella,&nbsp;<em>General Manager</em>&nbsp;PAMELLA Supermarket, dalam kesempatan ini Noor menyampaikan materi tentang &ldquo;Pemasaran Ala PAMELLA&rdquo; dimana kunci sukses PAMELLA adalah kerja keras, kerja cerdas dan kerja ikhlas sehingga menjadikan PAMELLA Supermarket sebagai&nbsp;<em>brand image</em>&nbsp;Supermarker Muslim di DIY.</p>\r\n\r\n<p>Apri Nuryanto, MT., dosen FT UNY yang mengangkat tema&nbsp;<em>&ldquo;Continuous Improvement&rdquo;,</em>&nbsp;menurutnya &ldquo;<em>Continuous Improvement (CI)</em>&nbsp;merupakan cara sistematis untuk mengidentifikasi dan menghilangkan pemborosan secepat mungkin dan dengan biaya serendah mungkin. CI mempunyai konsep PDCA&nbsp;<em>(Plan, Do, Check, Act)</em>&nbsp;diharapkan dengan menjalankan konsep PDCA dapat mencari dan mendapatkan &ldquo;bentuk terbaik&rdquo; dari&nbsp;<em>improvement</em>&nbsp;yang dihasilkan sehingga dapat memberikan solusi terbaik bagi masalah yang ada dan hasilnya akan terus bertahan bahkan berkembang jadi lebih baik&rdquo;, jelasnya.</p>\r\n\r\n<p><img alt=\"\" src=\"http://lppm.uny.ac.id/sites/lppm.uny.ac.id/files/ukm2.jpg\" /></p>\r\n\r\n<p>Peserta UKM sedang berdiskusi kelompok</p>', 3, '1', 1, 0, '2020-10-13 04:32:22', '2020-10-12 17:55:43'),
-(42, 'karya-start-up-inkubator-bisnis-uny-raih-investor-senilai-10-miliar', 'Karya Start-Up Inkubator Bisnis Uny Raih Investor Senilai 10 Miliar', 13, '1602525520karya-start-up-inkubator-bisnis-uny-raih-investor-senilai-10-miliar.jpeg', '<p>Parfum sepatu anti bakteri dan anti bau karya start-up inkubator bisnis UNY berhasil menarik perhatian investor. Produk yang diberi nama &lsquo;<em>Shoesayhelp</em>&rsquo; tersebut mendapatkan investor dari perusahaan digital marketing Yoshugi sebesar 10 miliar Rupiah. Penandatanganan kesepakatan bermitra tersebut ditandatangani oleh Direktur Yoshugi Yoyok Yubiantono dan owner&nbsp;<em>Shoesayhelp</em>&nbsp;Ghozwan Bahrey Al Farisy dalam acara&nbsp;<em>exhibition and business matching</em>&nbsp;Inkubator Bisnis LPPM UNY belum lama ini.&nbsp;<em>Shoesayhelp</em>&nbsp;merupakan salah satu tenant binaan inkubator bisnis UNY. Selain owner Ghozwan Bahrey Al Farisy juga ada founder Raden Jagad Takbir Ramadhan dan rekan kerja Muhamad Afkaar Zhorifasya Huda serta Muhamad Boby Prayogo. Keempat orang tersebut adalah mahasiswa Fakultas Ekonomi UNY.</p>\r\n\r\n<p>Menurut Ghozwan Bahrey Al Farisy,&nbsp;<em>Shoesayhelp&nbsp;</em>didirikan atas keprihatinannya bahwa sepatu yang dipakai oleh kalangan tua dan muda mayoritas tidak dirawat sehingga menimbulkan bau yang tidak sedap. &ldquo;<em>Shoesayhelp</em>&nbsp;adalah salah satu produk kreatif lokal dalam bentuk parfum antiseptik sepatu&rdquo; kata Ghozwan. Produk ini juga dapat merawat sepatu, menghilangkan aroma tidak sedap sekaligus membunuh kuman pada sepatu dan kaki dengan wangi yang bervarian serta harga yang terjangkau oleh masyarakat.&nbsp;<em>Shoesayhelp</em>&nbsp;ini adalah pencetus pertama pemberian&nbsp;<em>Coffee Bag</em>&nbsp;sebagai penetralisir bau sepatu sebelum menggunakan refresher. Raden Jagad Takbir Ramadhan mengatakan bahwa saat ini&nbsp;<em>Shoesayhelp&nbsp;</em>tidak hanya berkecimpung dalam bisnis parfum untuk sepatu namun juga&nbsp;<em>Shoes and Denim Refresher</em>&nbsp;serta&nbsp;<em>Leather Fine and&nbsp; Care Balsm</em>. &ldquo;<em>Denim refresher</em>&nbsp;merupakan produk perawatan untuk pakaian berbahan jeans&rdquo; kata Jagad. Sedangkan&nbsp;<em>Leather Fine and Care Balsm</em>&nbsp;merupakan produk inovasi baru untuk semir sepatu kulit dan&nbsp; aksesoris berbahan kulit secara mudah dan cepat. Pembuatan produk semir cair semprot yang instant dapat membuat waktu menyemir menjadi mudah dan singkat.&nbsp;<em>Leather care balsm</em>&nbsp;merupakan balsem yang digunakan untuk merawat sepatu kulit atau aksesoris berbahan kulit agar membuatnya menjadi lembab, mengkilap dan bersih.</p>\r\n\r\n<p>Kegiatan&nbsp;<em>business matching</em>&nbsp;ini poin utamanya adalah untuk mempertemukan tenant yang didampingi oleh inkubator bisnis UNY dengan mitra, baik yang akan bekerjasama maupun yang akan berinventasi pada tenant. Pimpinan inkubator bisnis UNY Prof. Nahiyah Jaidi Faraz merasa gembira dengan adanya kerjasama kemitraan ini. &ldquo;Inkubator bisnis UNY punya misi melayani, mendampingi dan mengantarkan tenant sampai pada strategi marketingnya&rdquo; kata Nahiyah. Para tenant yang didampingi akan dibimbing intensif selama 7 bulan mulai dari penyusunan proposal untuk Kemenristek sampai mendapatkan dana pendampingan bahkan hingga pemasaran produknya. UNY pada tahun ini memiliki 13&nbsp;<em>start-up</em>&nbsp;yang didampingi dengan total nilai hampir 6 miliar Rupiah.</p>\r\n\r\n<p>Kepala LPPM UNY Prof. Suyanta menjelaskan bahwa keberadaan inkubator bisnis UNY sebagai salah satu upaya menuju hilirisasi temuan Iptek. &ldquo;Karya dosen dan mahasiswa tidak boleh berhenti dalam wujud laporan, tetapi harus bermuara pada hasil nyata berupa teknologi tepatguna yang bermanfaat langsung bagi masyarakat luar&rdquo; kata Suyanta. Sementara itu Prof. Sutrisna Wibawa, Rektor UNY, menegaskan bahwa secara kelembagaan UNY akan terus meningkatkan kerjasama dengan lembaga/institusi lain. &ldquo;Kepercayaan dari investor tersebut harus dilaksanakan dengan penuh tanggung jawab dan amanah oleh Tim Pusat Inkubator dan seluruh civitas akademika UNY&rdquo; kata Rektor. Harapannya, prestasi ini dapat menjadi stimulus agar mampu menarik investor-investor lainnya untuk bekerja sama dengan UNY. (Dedy)</p>', 2, '1', 1, 0, '2020-10-13 04:31:37', '2020-10-12 17:58:40'),
-(43, 'uny-kembali-raih-penghargaan-inkubator-bisnis-berprestasi', 'UNY Kembali Raih Penghargaan Inkubator Bisnis Berprestasi', 88, '1602525629uny-kembali-raih-penghargaan-inkubator-bisnis-berprestasi.jpg', '<p><strong>TRIBUNJOGJA.COM, YOGYA</strong>&nbsp;-&nbsp;<a href=\"https://jogja.tribunnews.com/tag/universitas-negeri-yogyakarta\">Universitas&nbsp;Negeri&nbsp;Yogyakarta</a>&nbsp;kembali meraih penghargaan&nbsp;<a href=\"https://jogja.tribunnews.com/tag/inkubator-bisnis-berprestasi\">Inkubator&nbsp;Bisnis&nbsp;berprestasi</a>&nbsp;yang diberikan oleh Kementerian Riset, Teknologi, dan Pendidikan Tinggi (Menristekdikti) di Jakarta beberapa saat lalu.</p>\r\n\r\n<p>Menurut pimpinan inkubator bisnis UNY, Nahiyah Jaidi Faraz model inkubasi di UNY dibagi menjadi tiga bagian yaitu pra inkubasi, inkubasi dan pasca inkubasi.</p>\r\n\r\n<p>Sedangkan tahap inkubasi dibagi menjadi tiga periode yaitu awal, pengembangan dan lanjutan.</p>\r\n\r\n<p>&ldquo;Awalnya kami terapkan seleksi melalui proses wawancara dan seleksi administrasi. Kemudian pada tahap inkubasi ini para inkubator didampingi selama tiga tahun dan selama itu diberi berbagai pelatihan seperti business plan, teknik manajemen, produksi komersial, networking bahkan hingga ke pengurusan HAKI dan sertifikasi produk,&quot; terangnya.</p>\r\n\r\n<p>Nantinya, ketika sudah dianggap mampu maka akan dilepas sebagai UMKM yang inovatif, mandiri dan berdaya saing.</p>\r\n\r\n<p>Dia menerangkan, saat ini ada 22 produk yang bergabung dalam inkubator bisnis.</p>\r\n\r\n<p>Saat ini inkubator bisnis UNY juga aktif sebagai anggota resmi dari Asosiasi Inkubator Bisnis Indonesia (AIBI), ASEAN Business Incubator Network (ABINet) dan Asian Association of Business Incubation (AABI)</p>\r\n\r\n<p>&quot;Untuk kerjasama, yang telah menjalin diantaranya kerjasama internasional dengan Chaoyang University of Technology, Taiwan. Untuk fungsi dari Inkubator Bisnis UNY yakni sebagai lembaga pendampingan bagi UKM tenant di Indonesia,&quot; katanya.</p>\r\n\r\n<p>Lebih lanjut dia menerangkan, beberapa produk inkubator bisnis UNY yang sudah dikenal diantaranya speedometer custom untuk motor dan mobil, produsen robotic kits Indobot, RLS Liquid Spray berbahan binahong, pepaya dan lidah buaya untuk mengatasi nyeri serta mesin penyebar pakan ikan dan udang otomatis Astrover</p>\r\n\r\n<p>Sementara itu, Kepala LPPM UNY Suyanta mengatakan, keberadaan keberadaan inkubator bisnis UNY yakni sebagai salah satu upaya menuju hilirisasi temuan Iptek.</p>\r\n\r\n<p>Dimana karya dosen dan mahasiswa akan diterapkan sebagai teknologi tepat guna yang bisa bermanfaat bagi masyarakat.</p>\r\n\r\n<p>&ldquo;Karya dosen dan mahasiswa tidak boleh berhenti dalam wujud laporan, tetapi harus bermuara pada hasil nyata berupa teknologi tepat guna yang bermanfaat langsung bagi masyarakat luar,&rdquo; katanya</p>\r\n\r\n<p>Dia menerangkan, jika nantinya UNY juga akan terus meningkatkan kerjasama dengan lembaga/institusi lain.<br />\r\n<br />\r\nArtikel ini telah tayang di&nbsp;<a href=\"https:\">Tribunjogja.com</a>&nbsp;dengan judul UNY Kembali Raih Penghargaan Inkubator Bisnis Berprestasi,&nbsp;<a href=\"https://jogja.tribunnews.com/2019/01/09/uny-kembali-raih-penghargaan-inkubator-bisnis-berprestasi\">https://jogja.tribunnews.com/2019/01/09/uny-kembali-raih-penghargaan-inkubator-bisnis-berprestasi</a>.<br />\r\nPenulis: Siti Umaiyah<br />\r\nEditor: Ari Nugroho</p>', 6, '1', 1, 0, '2020-10-13 04:31:44', '2020-10-12 18:00:29'),
-(44, 'hibahpreneur-marak-kemenristekdikti-perketat-seleksi-digital-entrepreneur', '‘Hibahpreneur’ Marak, Kemenristekdikti Perketat Seleksi Digital Entrepreneur', 88, '1602525752hibahpreneur-marak-kemenristekdikti-perketat-seleksi-digital-entrepreneur.jpg', '<p><strong>SLEMAN, KRjogja.com</strong>&nbsp;&ndash; Sederet masalah masih membayangi penciptaan enterpreneur muda, khususnya di bidang teknologi. Padahal, peluang untuk mendirikan start-up atau perusahaan pemula berbasis teknologi masih terbuka lebar di Indonesia.</p>\r\n\r\n<p>Satu masalah yang terlihat adalah kurangnya minat anak muda untuk mengembangkan start-up itu sendiri. Bahkan, sebagian besar dari mereka mau menerima dana hibah dari pemerintah tapi tak betul-betul menjalankan perusahaannya.</p>\r\n\r\n<p>Hal tersebut terungkap dalam Focus Grop Discussion (FGD) yang dilakukan oleh Direktorat Perusahaan Pemula Berbasis Teknologi Kemenristekdikti dan Inkubator Bisnis Lembaga Penelitian dan Pengabdian kepada Masyarakat (LPPM) Universitas Negeri Yogyakarta (UNY) di Eastparc Hotel, Kamis (16/1/2020) siang.</p>\r\n\r\n<p>Dalam kesempatan tersebut, Direktur Direktorat Perusahaan Pemula Berbasis Teknologi Kemenristekdikti, Ir Retno Sumekar MSi mengungkapkan, setidaknya 50 persen pemuda yang ikut program Perusahaan Pemula Berbasis Teknologi (PPBT) hanya mengharapkan dana hibah tapi tak betul-betul menjalankan perusahaannya.</p>\r\n\r\n<p>&quot;Sejak awal, kata kunci program ini bukan hanya teknologi bernilai komersial, tapi justru attitude atau sikap dan mental. Itu yang utama. Teknologi bisa nomor dua. Jika inovasinya bagus tapi sikapnya tidak benar ya perusahaannya tak akan jalan juga,&quot; paparnya kepada KRjogja.com.</p>\r\n\r\n<p>Ia menjelaskan, mereka yang disebut pemburu hibah itu biasanya akan mengikuti banyak program yang memberikan dana hibah. Setelah dapat dana, mereka justru membeli barang-barang yang tak sesuai dengan kebutuhan perusahaan. Karena bersifat hibah, maka mereka tak perlu khawatir untuk mengembalikan uang itu.</p>\r\n\r\n<p>&quot;Dari FGD ini, kami jadi memiliki keputusan kuat karena yang kami butuhkan adalah komitmen dari mereka. Jika uang sudah kami turunkan di termin pertama dan tidak menghasilkan, Kemeristekdikti berhak mengganti Direktur Utama (Dirut) perusahaan hingga tidak lagi menurunkan anggaran,&quot; kata Retno. Menurutnya, aturan tersebut perlu ditegakkan agar uang negara tidak dihamburkan dengan sia-sia.</p>\r\n\r\n<p>Selain mengetatkan aturan, Retno mengungkapkan, pihaknya bersinergi dengan kementerian dan pihak swasta agar mengetahui apakah apakah start-up yang mengikuti program PBBT itu sudah pernah menerima pendanaan atau belum.</p>\r\n\r\n<p>&quot;Kami juga menyebut mereka pemburu hibah itu &#39;hibahpreneur&#39;. Maka, kami berupaya memiliki database agar ketahuan siapa yang pernah menerima funding. Biasanya akan terlihat dari produk yang ditawarkan. Jika mirip, akan kami investigasi,&quot; tandasnya.</p>\r\n\r\n<p>Sementara, Pimpinan Inkubator Bisnis LPPM UNY, Prof Nahiyah Jaidi Faraz menambahkan UNY juga sedang gencar meningkatkan kualitas inkubator bisnis agar semakin banyak mahasiswa yang menjadi pengusaha muda. (R-1)</p>', 3, '1', 1, 0, '2020-10-13 04:32:12', '2020-10-12 18:02:32');
+(45, 'wisuda-amikom-ke-999', 'Wisuda amikom ke 999', 82, '1617570077wisuda-amikom-ke-999.png', '<p>djasdsasjakdjsaf</p>', 3, '1', 8, 0, '2021-04-04 21:21:28', '2021-04-04 21:01:20'),
+(46, 'gop-rep-greg-murphy-slammed-for-invoking-911-while-tagging-ilhan-omar-in-deleted-tweet', 'GOP Rep. Greg Murphy Slammed for Invoking 9/11 While Tagging Ilhan Omar in Deleted Tweet', 82, '1617570302gop-rep-greg-murphy-slammed-for-invoking-911-while-tagging-ilhan-omar-in-deleted-tweet.jpg', '<p>Representative Greg Murphy, a North Carolina Republican, received backlash after he invoked the terrorist attacks of September 11, 2001, in a since-deleted&nbsp;<a href=\"https://www.newsweek.com/topic/twitter\" target=\"_blank\">Twitter</a>&nbsp;response to Democratic Representative&nbsp;<a href=\"https://www.newsweek.com/topic/ilhan-omar\" target=\"_blank\">Ilhan Omar</a>&#39;s condolences over the death of a Capitol Police officer after the Friday attack targeting the U.S. Capitol.</p>\r\n\r\n<p><img alt=\"Ilhan Omar wearing a blue hat: Representative Greg Murphy (R-North Carolina) referenced the 9/11 terrorist attacks in a response to a Twitter post by Representative Ilhan Omar (D-Minnesota), a Muslim member of Congress. In this photo, Omar speaks during a news conference outside the U.S. Capitol on March 11 in Washington, D.C.\" src=\"https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB1fiEpv.img?h=533&amp;w=799&amp;m=6&amp;q=60&amp;o=f&amp;l=f&amp;x=641&amp;y=438\" />&copy; Drew Angerer/Getty Images&nbsp;Representative Greg Murphy (R-North Carolina) referenced the 9/11 terrorist attacks in a response to a Twitter post by Representative Ilhan Omar (D-Minnesota), a Muslim member of Congress. In this photo, Omar speaks during a news conference outside the U.S. Capitol on March 11 in Washington, D.C.</p>\r\n\r\n<p>Omar, who is Muslim and represents Minnesota, has routinely&nbsp;<a href=\"https://www.newsweek.com/ilhan-omar-slams-gop-after-posters-linking-her-911-hijackers-causes-physical-1349703\" target=\"_blank\">faced Islamophobic and racist attacks</a>&nbsp;since she became one of the first two Muslim women elected to&nbsp;<a href=\"https://www.newsweek.com/topic/congress\" target=\"_blank\">Congress</a>&nbsp;back in 2018. Memes and baseless conspiracy theories have circulated widely within right-wing circles falsely connecting her to Islamist terrorist groups and suggesting that she was somehow associated with the 9/11 terrorist attacks.</p>', 1, '1', 5, 2, '2021-04-04 21:05:34', '2021-04-04 21:05:24');
 
 -- --------------------------------------------------------
 
@@ -112,7 +146,6 @@ INSERT INTO `berita_komentar` (`id`, `komentar`, `user_id`, `berita_id`, `create
 (7, 'yey', 5, 11, '2020-09-18 02:33:55', '2020-09-18 02:33:55', 'Tenant'),
 (8, 'odading', 2, 17, '2020-09-18 02:40:47', '2020-09-18 02:40:47', 'user'),
 (9, 'ps5', 2, 14, '2020-09-20 21:13:47', '2020-09-20 21:13:47', 'user'),
-(10, 'Axion', 4, 30, '2020-09-25 02:12:09', '2020-09-25 02:12:09', 'inkubator'),
 (11, 'mmmmmmmmmmmmmmmmmmmmm', 4, 32, '2020-09-25 07:07:06', '2020-09-25 07:07:06', 'inkubator');
 
 -- --------------------------------------------------------
@@ -140,7 +173,8 @@ INSERT INTO `berita_like` (`id`, `user_id`, `berita_id`, `updated_at`, `created_
 (4, 4, 11, '2020-09-18 09:27:20', '2020-09-18 09:27:20'),
 (5, 5, 11, '2020-09-18 09:33:48', '2020-09-18 09:33:48'),
 (6, 2, 17, '2020-09-18 09:40:53', '2020-09-18 09:40:53'),
-(7, 2, 16, '2020-09-21 09:09:52', '2020-09-21 09:09:52');
+(7, 2, 16, '2020-09-21 09:09:52', '2020-09-21 09:09:52'),
+(11, 4, 45, '2021-04-04 21:21:27', '2021-04-04 21:21:27');
 
 -- --------------------------------------------------------
 
@@ -241,6 +275,42 @@ CREATE TABLE `jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `laba_rugi`
+--
+
+CREATE TABLE `laba_rugi` (
+  `id` int(11) NOT NULL,
+  `tenant_id` int(11) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `jenis` int(11) NOT NULL DEFAULT 1,
+  `jumlah` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `laba_rugi`
+--
+
+INSERT INTO `laba_rugi` (`id`, `tenant_id`, `keterangan`, `jenis`, `jumlah`, `foto`, `tanggal`, `updated_at`) VALUES
+(1, 1, 'Penjualan', 1, '2000000', '', '2020-11-25 13:28:30', '2020-10-25 13:28:30'),
+(6, 1, 'Pendapatan jasa', 1, '50000000', '', '2020-11-03 16:59:11', '2020-11-03 16:59:11'),
+(7, 1, 'Pendapatan bunga', 1, '500000', '', '2020-11-03 17:01:02', '2020-11-03 17:01:02'),
+(8, 1, 'Beban gaji', 0, '10000000', '', '2020-11-03 17:01:43', '2020-11-03 17:01:43'),
+(9, 1, 'Beban sewa', 0, '2500000', '', '2020-11-03 17:02:29', '2020-11-03 17:02:29'),
+(10, 1, 'Beban perlengkapan', 0, '1000000', '', '2020-11-03 17:03:31', '2020-11-03 17:03:31'),
+(11, 1, 'Beban iklan', 0, '500000', '', '2020-11-03 17:04:06', '2020-11-03 17:04:06'),
+(12, 1, 'Beban penyusutan', 0, '400000', '', '2020-11-03 17:04:55', '2020-11-03 17:04:55'),
+(13, 1, 'Beban pantry', 0, '300000', '', '2020-11-03 00:08:04', '0000-00-00 00:00:00'),
+(14, 1, 'Beban premi asuransi', 0, '1000000', '', '2020-11-03 00:08:04', '0000-00-00 00:00:00'),
+(15, 1, 'Beban listrik dan air', 0, '500000', '', '2020-11-03 00:09:42', '0000-00-00 00:00:00'),
+(16, 1, 'Beban administrasi', 0, '300000', '', '2020-11-03 00:09:42', '0000-00-00 00:00:00'),
+(17, 1, 'Beban bunga', 0, '200000', '', '2020-11-03 00:09:42', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -287,6 +357,7 @@ CREATE TABLE `password_resets` (
 --
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('admin@admin.com', '$2y$10$erMdqZNC2hqMDCCdJ4gkveQVMyCkOaqA655AjmEUlFwCJyWKKkEJu', '2020-03-21 21:12:36'),
 ('admin@admin.com', '$2y$10$erMdqZNC2hqMDCCdJ4gkveQVMyCkOaqA655AjmEUlFwCJyWKKkEJu', '2020-03-21 21:12:36');
 
 -- --------------------------------------------------------
@@ -340,6 +411,10 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `slug`, `description`, `model`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Can View Users', 'view.users', 'Can view users', 'Permission', '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
+(2, 'Can Create Users', 'create.users', 'Can create new users', 'Permission', '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
+(3, 'Can Edit Users', 'edit.users', 'Can edit users', 'Permission', '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
+(4, 'Can Delete Users', 'delete.users', 'Can delete users', 'Permission', '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
 (1, 'Can View Users', 'view.users', 'Can view users', 'Permission', '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
 (2, 'Can Create Users', 'create.users', 'Can create new users', 'Permission', '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
 (3, 'Can Edit Users', 'edit.users', 'Can edit users', 'Permission', '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
@@ -447,15 +522,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `tenant_id`, `inventor_id`, `priority_id`, `title`, `subtitle`, `harga_pokok`, `harga_jual`, `kategori_id`, `tag`, `location`, `address`, `contact`, `tentang`, `latar`, `keterbaharuan`, `spesifikasi`, `manfaat`, `keunggulan`, `teknologi`, `pengembangan`, `proposal`, `update_at`, `created_at`) VALUES
-(1, 1, 0, 3, 'Kits Sepeda Lipat', 'Folding Bike Astro Kits Khusus Sepeda Lipat', 0, 8000000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 19:21:30', NULL),
-(2, 1, 0, 3, 'Standard Kits', 'Standard Astro Kits Untuk semua sepeda kecuali Sepeda Lipat', 0, 8000000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 19:21:30', NULL),
-(3, 1, 0, 3, 'Premium Kits', 'Premium Astro Kits Untuk semua sepeda kecuali Sepeda Lipat', 0, 9500000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 19:21:30', NULL),
-(4, 4, 0, 3, 'Pembersih Sepatu Das Solen', 'Pembersih sepatu dari @fresher58 yang berfungsi membersihkan sneakers anda\r\n', 0, 50000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 21:32:15', NULL),
-(5, 4, 0, 3, 'Parfum Sepatu - Sneaker Parfume Shoe Say Help', 'Shoe Say Help Sneaker Parfume\r\nAvailable Variant :\r\n- Apple\r\n- Green Tea\r\n- Vanilla\r\n- Coffee\r\n- Sweet Ape', 0, 60000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 21:33:04', NULL),
-(6, 3, 0, 3, 'Robot Edukasi Lite Version Anami Line Follower Arduino Uno R3', 'Educational Robotic Kit Line Follower Arduino\r\n.\r\nSpecifications :\r\n- Main Control Arduino Uno R3\r\n- USB Type B\r\n- 6 Line Sensor\r\n- LCD 1602 Display\r\n- Driver Motor L293D\r\n- Motor DC Geared 6V 300RPM', 0, 799000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 21:44:36', NULL),
-(7, 2, 0, 3, 'Speedometer Custom Daihatsu Sigra dan Toyota Calya', 'Ready Design Panel Speedometer Custom Daihatsu Sigra dan Toyota Calya', 0, 385000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 21:48:25', NULL),
-(8, 2, 0, 3, 'Speedometer Custom Toyota All New Avanza', 'Ready Desain Panel Speedometer Custom Toyota All New Avanza', 0, 385000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 21:48:25', NULL),
-(9, 2, 0, 3, 'Speedometer Custom Toyota Agya dan Daihatsu Ayla', 'Ready Desain Panel Speedometer Custom Toyota Agya dan Daihatsu Ayla', 0, 385000, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-10-12 21:48:58', NULL);
+(13, 2, 0, 3, 'Ayam Goreng Kampung', 'ayam goreng kampung khas temanggung dengan bumbu laos yang gurih', 8000, 12000, 2, 'Siskubis,ayam,indonesia,unggas,makanan', 'Temanggung', 'Jalan raya kedu km. 6 temanggung', '081238844999', 'Ayam goreng yang berasal dari ayam pilihan. Dengan daging yang lembuat dan rasa yang mantap tentunya', 'Terciptanya produk ini berasal dari salah satu foundernya yang suka makan ayam tetapi belum menemukan rasa yang sesuai dengan lidahnya', 'tidak ada', 'Ayam; Rempah; Kecap; Gula', 'Dapat membuat kenyang', 'Daging yang lembut;Lebih Gurih;Dimasak dengan hati', 'tidak ada', 'tidak ada', '1617580233ayam-goreng-kampung.pdf', '2021-04-04 23:50:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -475,6 +542,13 @@ CREATE TABLE `produk_bisnis` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `produk_bisnis`
+--
+
+INSERT INTO `produk_bisnis` (`id`, `produk_id`, `kompetitor`, `target_pasar`, `dampak_sosek`, `produksi_harga`, `pemasaran`, `updated_at`, `created_at`) VALUES
+(4, 13, 'Warung Makan dengan produk sejenis', 'Semua kalangan', 'Memberantas kelaparan', 'Ayam : 40000;Bumbu : 20000', 'Didistribusikan secara langsung ke konsumen', '2021-04-04 17:08:57', '2021-04-04 16:50:34');
+
 -- --------------------------------------------------------
 
 --
@@ -490,6 +564,13 @@ CREATE TABLE `produk_canvas` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk_canvas`
+--
+
+INSERT INTO `produk_canvas` (`id`, `produk_id`, `canvas`, `kategori`, `tanggal`, `updated_at`, `created_at`) VALUES
+(3, 13, '<figure class=\"table\"><table><tbody><tr><td>Ini model canvasnya</td><td>Ini model canvasnya</td><td>Ini model canvasnya</td></tr><tr><td>Ini model canvasnya</td><td>Ini model canvasnya</td><td>Ini model canvasnya</td></tr></tbody></table></figure>', '2', '2021-04-02', '2021-04-04 17:08:57', '2021-04-04 16:50:34');
 
 -- --------------------------------------------------------
 
@@ -509,6 +590,13 @@ CREATE TABLE `produk_ijin` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk_ijin`
+--
+
+INSERT INTO `produk_ijin` (`id`, `produk_id`, `jenis_ijin`, `pemberi`, `status`, `tahun`, `tanggal`, `dokumen`, `updated_at`, `created_at`) VALUES
+(3, 13, 'P-IRT', 'Eko Suprianto', 'Aktif', 2020, '2021-04-04', '1617580234ayam-goreng-kampung.pdf', '2021-04-04 17:08:57', '2021-04-04 16:50:34');
 
 -- --------------------------------------------------------
 
@@ -539,7 +627,12 @@ INSERT INTO `produk_image` (`id`, `produk_id`, `judul`, `image`, `caption`, `upd
 (6, 6, 'Robot Edukasi Lite Version Anami', 'indobot.jpg', '', '2020-10-12 21:45:23', NULL),
 (7, 7, 'Speedometer Custom Daihatsu Sigra dan Toyota Calya', 'Calya.PNG', '', '2020-10-12 21:50:18', NULL),
 (8, 8, 'Speedometer Custom Toyota All New Avanza', 'All new avanza.PNG', '', '2020-10-12 21:50:18', NULL),
-(9, 9, 'Speedometer Custom Toyota Agya dan Daihatsu Ayla', 'Agya alya.PNG', '', '2020-10-12 21:50:45', NULL);
+(9, 9, 'Speedometer Custom Toyota Agya dan Daihatsu Ayla', 'Agya alya.PNG', '', '2020-10-12 21:50:45', NULL),
+(13, 13, 'Ayam Goreng Kampung', '1617580234ayam-goreng-kampung0.jpg', 'O', '2021-04-04 23:50:39', NULL),
+(14, 13, 'Ayam Goreng Kampung', '1617580236ayam-goreng-kampung1.jpg', 'u', '2021-04-04 23:50:39', NULL),
+(15, 13, 'Ayam Goreng Kampung', '1617581329ayam-goreng-kampung0.jpg', 'Alat Transportasi', '2021-04-05 00:08:57', NULL),
+(16, 13, 'Ayam Goreng Kampung', '1617581331ayam-goreng-kampung1.jpg', 'Alat Transportasi', '2021-04-05 00:08:57', NULL),
+(17, 13, 'Ayam Goreng Kampung', '1617581334ayam-goreng-kampung2.jpg', 'Alat Transportasi', '2021-04-05 00:08:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -560,6 +653,13 @@ CREATE TABLE `produk_ki` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk_ki`
+--
+
+INSERT INTO `produk_ki` (`id`, `produk_id`, `jenis_ki`, `status_ki`, `permohonan`, `sertifikat`, `berlaku_mulai`, `berlaku_sampai`, `pemilik_ki`, `updated_at`, `created_at`) VALUES
+(3, 13, 1, 'Aktif', 'Tidak tau diisi apa', '1617580234ayam-goreng-kampung.pdf', '2021-04-05', '2022-12-11', 'Adnan Vazshola', '2021-04-04 17:08:57', '2021-04-04 16:50:34');
 
 -- --------------------------------------------------------
 
@@ -583,6 +683,13 @@ CREATE TABLE `produk_riset` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `produk_riset`
+--
+
+INSERT INTO `produk_riset` (`id`, `produk_id`, `nama_riset`, `pelaksana`, `tahun`, `pendanaan`, `skema`, `nilai`, `aktifitas`, `tujuan`, `hasil`, `updated_at`, `created_at`) VALUES
+(3, 13, 'Uji Kelayakan Makanan', 'MUI', '2020', 'Pihak pengelola', 'Riset kelayakan dan kehalalan makanan', 'Sangat Baik', 'Lancar', 'Mengetahui kelayakan makanan. Serta mendapat sertifikat halal', 'Sangat Baik', '2021-04-04 17:08:57', '2021-04-04 16:50:34');
+
 -- --------------------------------------------------------
 
 --
@@ -602,6 +709,13 @@ CREATE TABLE `produk_sertifikasi` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `produk_sertifikasi`
+--
+
+INSERT INTO `produk_sertifikasi` (`id`, `produk_id`, `jenis_sertif`, `pemberi_sertif`, `status`, `tahun`, `tanggal`, `dokumen`, `updated_at`, `created_at`) VALUES
+(3, 13, 'Halal', 'LPPOM MUI', 'Aktif', 2020, '2021-04-04', '1617580234ayam-goreng-kampung.pdf', '2021-04-04 17:08:57', '2021-04-04 16:50:34');
+
 -- --------------------------------------------------------
 
 --
@@ -618,6 +732,14 @@ CREATE TABLE `produk_team` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk_team`
+--
+
+INSERT INTO `produk_team` (`id`, `produk_id`, `user_id`, `jabatan`, `divisi`, `tugas`, `updated_at`, `created_at`) VALUES
+(3, 13, 11, 'Founder', 'Direksi', 'Memimpin jalannya produksi', '2021-04-05 00:08:57', NULL),
+(4, 13, 14, 'Marketing', 'Pemasaran', 'Memasarkan produk', '2021-04-05 00:08:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -679,6 +801,12 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `slug`, `description`, `level`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Admin', 'admin', 'Admin Role', 5, '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
+(2, 'User', 'user', 'User Role', 1, '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
+(3, 'Unverified', 'unverified', 'Unverified Role', 0, '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
+(4, 'Mentor', 'mentor', 'Pendamping Tenant', 3, '2020-03-22 06:08:30', '2020-03-22 06:10:35', NULL),
+(5, 'Inkubator', 'inkubator', 'Inkubator', 4, '2020-03-22 06:09:13', '2020-03-22 06:09:13', NULL),
+(6, 'Tenant', 'tenant', 'Tenant', 2, '2020-03-22 06:10:05', '2020-03-22 06:10:05', NULL),
 (1, 'Admin', 'admin', 'Admin Role', 5, '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
 (2, 'User', 'user', 'User Role', 1, '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
 (3, 'Unverified', 'unverified', 'Unverified Role', 0, '2020-03-20 07:35:51', '2020-03-20 07:35:51', NULL),
@@ -922,7 +1050,14 @@ CREATE TABLE `tenant_user` (
 
 INSERT INTO `tenant_user` (`id`, `user_id`, `tenant_id`, `status`, `updated_at`, `created_at`) VALUES
 (1, 6, 1, '1', '2020-08-12 17:57:48', '2020-08-12 17:57:48'),
-(2, 5, 2, '1', '2020-08-12 17:57:48', '2020-08-12 17:57:48');
+(2, 5, 2, '1', '2020-08-12 17:57:48', '2020-08-12 17:57:48'),
+(3, 10, 2, '1', '2021-04-05 01:34:23', '2021-04-05 01:34:23'),
+(4, 8, 2, '1', '2021-04-05 01:34:23', '2021-04-05 01:34:23'),
+(5, 11, 2, '1', '2021-04-05 01:35:58', '2021-04-05 01:35:58'),
+(6, 12, 2, '1', '2021-04-05 01:35:58', '2021-04-05 01:35:58'),
+(7, 13, 2, '1', '2021-04-05 01:35:58', '2021-04-05 01:35:58'),
+(8, 14, 2, '1', '2021-04-05 01:35:58', '2021-04-05 01:35:58'),
+(9, 15, 2, '1', '2021-04-05 01:35:58', '2021-04-05 01:35:58');
 
 -- --------------------------------------------------------
 
@@ -968,6 +1103,13 @@ INSERT INTO `users` (`id`, `name`, `inkubator_id`, `email`, `email_verified_at`,
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `arus_kas`
+--
+ALTER TABLE `arus_kas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tenant_id` (`tenant_id`);
 
 --
 -- Indexes for table `berita`
@@ -1025,6 +1167,13 @@ ALTER TABLE `inkubator`
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jobs_queue_index` (`queue`(191));
+
+--
+-- Indexes for table `laba_rugi`
+--
+ALTER TABLE `laba_rugi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tenant_id` (`tenant_id`);
 
 --
 -- Indexes for table `migrations`
@@ -1179,16 +1328,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `arus_kas`
+--
+ALTER TABLE `arus_kas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `berita_category`
 --
 ALTER TABLE `berita_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `berita_komentar`
@@ -1200,13 +1355,19 @@ ALTER TABLE `berita_komentar`
 -- AUTO_INCREMENT for table `berita_like`
 --
 ALTER TABLE `berita_like`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `laba_rugi`
+--
+ALTER TABLE `laba_rugi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1224,55 +1385,55 @@ ALTER TABLE `pengumuman`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `produk_bisnis`
 --
 ALTER TABLE `produk_bisnis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `produk_canvas`
 --
 ALTER TABLE `produk_canvas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `produk_ijin`
 --
 ALTER TABLE `produk_ijin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `produk_image`
 --
 ALTER TABLE `produk_image`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `produk_ki`
 --
 ALTER TABLE `produk_ki`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `produk_riset`
 --
 ALTER TABLE `produk_riset`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `produk_sertifikasi`
 --
 ALTER TABLE `produk_sertifikasi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `produk_team`
 --
 ALTER TABLE `produk_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `profil_user`
@@ -1320,7 +1481,7 @@ ALTER TABLE `tenant_mentor`
 -- AUTO_INCREMENT for table `tenant_user`
 --
 ALTER TABLE `tenant_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
