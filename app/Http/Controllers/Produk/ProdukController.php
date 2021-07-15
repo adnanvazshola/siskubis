@@ -104,6 +104,21 @@ class ProdukController extends Controller
         return view('produk.detailProduk', compact('produk','produk_team','image','tag','spesifikasi','manfaat','keunggulan','produksi_harga'));
     }
 
+    // public function kategori($id)
+    // {
+    //     $produk         = Produk::find($id);
+    //     $produk         = Produk::with(['tenant','priority','produk_bisnis','produk_canvas','produk_ijin','produk_image','produk_ki','produk_riset','produk_sertifikasi'])->where('id', $id)->first();
+    //     $image          = ProdukImage::where('produk_id',$id)->get();
+    //     $produk_team    = ProdukTeam::with('profil_user.user')->where('produk_id', $id)->get();
+    //     $tag            = explode(',',$produk->tag);
+    //     $spesifikasi    = explode(';',$produk->spesifikasi);
+    //     $manfaat        = explode(';',$produk->manfaat);
+    //     $keunggulan     = explode(';',$produk->keunggulan);
+    //     $produksi_harga = explode(';',$produk->produk_bisnis->produksi_harga); 
+
+    //     return view('produk.detailProduk', compact('produk','produk_team','image','tag','spesifikasi','manfaat','keunggulan','produksi_harga'));
+    // }
+
     public function create()
     {
         $tenant = TenantUser::where('user_id', request()->user()->id)->first();
@@ -121,7 +136,7 @@ class ProdukController extends Controller
     {
         $validator = Validator::make($request->all(), [
 
-            'title_produk'                 => 'required',
+            'title_produk'                 => 'required|unique:produk,title,' . $request->title_produk,
             'subtitle_produk'              => 'required',
             'harga_pokok_produk'           => 'required|numeric',
             'harga_jual_produk'            => 'required|numeric',

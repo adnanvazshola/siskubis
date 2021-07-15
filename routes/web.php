@@ -56,9 +56,9 @@ Route::group(['prefix' => 'inkubator', 'middleware' => ['role:inkubator']], func
 	Route::post('/mentor/tambah', 'Mentor\MentorController@create')->name('inkubator.mentor.tenant');
 	Route::post('/mentor/store', 'Inkubator\RegisterMentorController@create')->name('inkubator.regis');
 	Route::get('/mentor/profile/{id}', 'Profile\ProfileUserController@showMentorDetail')->name('inkubator.mentor-detail');
-	Route::get('/produk', 'Produk\ProdukController@index')->name('inkubator.produk');
-	Route::get('/produk/{kategori}', 'Produk\ProdukController@kategori')->name('inkubator.produk-kategori');
-	Route::get('/produk/{kategori}/{id}', 'Produk\ProdukController@detail')->name('inkubator.produk-detail');
+	// Route::get('/produk', 'Produk\ProdukController@index')->name('inkubator.produk');
+	// Route::get('/produk/{kategori}', 'Produk\ProdukController@kategori')->name('inkubator.produk-kategori');
+	// Route::get('/produk/{kategori}/{id}', 'Produk\ProdukController@detail')->name('inkubator.produk-detail');
 
 	Route::get('/aktifitas', 'Aktifitas\AktifitasController@index')->name('inkubator.aktifitas');
 	// Route Keuangan 
@@ -74,9 +74,7 @@ Route::group(['prefix' => 'inkubator', 'middleware' => ['role:inkubator']], func
 
 	//Route Produk Inkubator
 	Route::get('/produk', 'Produk\ProdukController@index')->name('inkubator.produk');
-	Route::get('/produk/{id}', 'Produk\ProdukController@show')->name('inkubator.detailProduk');
-	Route::get('/produk/{kategori}', 'Produk\ProdukController@kategori')->name('inkubator.produk-kategori');
-	Route::get('/produk/{kategori}/{id}', 'Produk\ProdukController@detail')->name('inkubator.produk-detail');
+	Route::get('/produk/{id}', 'Produk\ProdukController@show')->name('inkubator.showProduct');
 
 	//route surat inkubator
 	Route::get('/surat', 'Persuratan\PersuratanController@index')->name('inkubator.surat');

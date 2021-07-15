@@ -132,7 +132,7 @@ class BeritaController extends Controller
         $berita->delete();
         $komentar = komentar::where('berita_id', $berita->id)->delete();
         $like = BeritaLike::where('berita_id', $berita->id)->delete();
-        File::delete(storage_path('app/public/berita/' . $berita->foto));
+        File::delete(storage_path('app/public/storage/berita/' . $berita->foto));
 
         $notification = array(
             'message' => 'Berita Berhasil Dihapus!',

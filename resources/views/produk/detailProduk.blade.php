@@ -200,7 +200,7 @@
 						<div class="ul-product-detail__border-box">
 							<div class="ul-product-detail--icon mb-2"><i class="i-Car text-success text-25 font-weight-500"></i></div>
 							<h5 class="heading">Quick Delivery</h5>
-							<p class="text-muted text-12">Jaminan pengiriman cepat karena kami berkolaborasi dengan jasa pengiriman yang handal.</p>
+							<p class="text-muted text-12">Jaminan pengiriman cepat karena kami berkolaborasi dengan jasa pengiriman.</p>
 						</div>
 					</div>
 				</div>
@@ -312,7 +312,7 @@
 										  		@else
 										  			Belum ada data
 										  		@endif
-										  	</dd> <!-- Belum di deklarasikan -->
+										  	</dd>
 
 										  	<dt class="col-sm-3">Tags</dt><dt class="col-md-1"> : </dt>
 										  	<dd class="col-sm-8">

@@ -55,7 +55,7 @@
                                 <div class="flex-grow-1 d-bock">
                                     <div class="card-body align-self-center d-flex flex-column justify-content-between align-items-lg-center">
                                         @role('inkubator')
-                                        <a class="w-40 w-sm-100" href="{{ route('inkubator.detailProduk', $row->id) }}">
+                                        <a class="w-40 w-sm-100" href="{{ route('inkubator.showProduct', $row->id) }}">
                                             <div class="item-title">
                                                 {{ $row->title }}
                                             </div>

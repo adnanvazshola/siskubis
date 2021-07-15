@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('css')
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
 
 @endsection
 @section('content')
@@ -60,7 +60,7 @@
 				</div>
 			</footer>
 		</div>
-		<div class="card">
+		<div class="card mt-3">
 			<div class="card-body">
 				<div class="card-title"><h6>{{ $total_komentar }} Responses</h6></div>
 				@forelse($komentar as $row)
